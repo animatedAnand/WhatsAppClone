@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_facebook_icon.xml" value="0.1125" />
         <entry key="app/src/main/res/drawable/ic_google_icon.xml" value="0.1125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1638888888888889" />
+        <entry key="app/src/main/res/menu/main_activity_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>
