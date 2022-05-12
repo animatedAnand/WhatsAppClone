@@ -52,7 +52,7 @@ public class User {
         this.password = password;
     }
 
-    public String getUserid() {
+    public String getUserid(String key) {
         return userid;
     }
 

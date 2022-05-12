@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_et_msg.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/bg_send_btn.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/ic_call_icon.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_facebook_icon.xml" value="0.1125" />
         <entry key="app/src/main/res/drawable/ic_google_icon.xml" value="0.1125" />
+        <entry key="app/src/main/res/drawable/ic_send.xml" value="0.147" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_personal_chat.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1638888888888889" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/user_layout_item.xml" value="0.19375" />
         <entry key="app/src/main/res/menu/main_activity_menu.xml" value="0.19375" />
       </map>
     </option>

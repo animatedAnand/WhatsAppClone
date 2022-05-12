@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.settings:
             {
-                Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,PersonalChatActivity.class));
                 break;
             }
             case R.id.log_out:
