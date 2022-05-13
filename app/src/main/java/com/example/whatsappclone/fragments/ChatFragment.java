@@ -49,7 +49,7 @@ public class ChatFragment extends Fragment {
              for (DataSnapshot dataSnapshot:snapshot.getChildren())
              {
                  User cur_user=dataSnapshot.getValue(User.class);
-                 cur_user.getUserid(dataSnapshot.getKey());
+                 cur_user.setUserid(dataSnapshot.getKey());
                  list.add(cur_user);
              }
              adapter.notifyDataSetChanged();

@@ -1,6 +1,7 @@
 package com.example.whatsappclone.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whatsappclone.PersonalChatActivity;
 import com.example.whatsappclone.R;
 import com.example.whatsappclone.models.User;
 import com.squareup.picasso.Picasso;
@@ -39,6 +41,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         Picasso.get().load(cur_user.getProfile_picture()).placeholder(R.drawable.ic_profile).into(holder.civ_profile);
         holder.tv_user_name.setText(cur_user.getName());
         //holder.tv_last_msg.setText(cur_user.getLast_msg());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, PersonalChatActivity.class);
+                intent.putExtra("receiver_id",cur_user.getUserid());
+                intent.putExtra("receiver_name",cur_user.getName());
+                intent.putExtra("receiver_pic",cur_user.getProfile_picture());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
