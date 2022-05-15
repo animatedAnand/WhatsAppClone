@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsAppClone">
         <activity
+            android:name=".GroupChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".PersonalChatActivity"
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
