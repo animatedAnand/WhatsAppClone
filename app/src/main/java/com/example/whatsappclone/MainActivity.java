@@ -43,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.settings:
             {
-                String id=auth.getUid();
-                Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                break;
+            }
+            case R.id.group_chat:
+            {
+                startActivity(new Intent(MainActivity.this,GroupChatActivity.class));
                 break;
             }
             case R.id.log_out:
@@ -53,12 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,SignInActivity.class));
                 break;
             }
-            case R.id.group_chat:
-            {
-                auth.signOut();
-                startActivity(new Intent(MainActivity.this,GroupChatActivity.class));
-                break;
-            }
+
         }
         return true;
     }

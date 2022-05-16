@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.whatsappclone.PersonalChatActivity;
 import com.example.whatsappclone.R;
 import com.example.whatsappclone.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,7 +45,29 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User cur_user=list.get(position);
         Picasso.get().load(cur_user.getProfile_picture()).placeholder(R.drawable.ic_profile).into(holder.civ_profile);
         holder.tv_user_name.setText(cur_user.getName());
-        //holder.tv_last_msg.setText(cur_user.getLast_msg());
+        FirebaseDatabase.getInstance().getReference().child("Chats")
+                .child(FirebaseAuth.getInstance().getUid()+cur_user.getUserid()).orderByChild("time")
+                .limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChildren())
+                {
+                    for (DataSnapshot snapshot1:snapshot.getChildren())
+                    {
+                        holder.tv_last_msg.setText(snapshot1.child("text").getValue().toString());
+                    }
+                }
+                else
+                {
+                    holder.tv_last_msg.setText("Start chatting..");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
