@@ -1,7 +1,7 @@
 package com.example.whatsappclone.models;
 
 public class MessageModel {
-    String uID,text;
+    String uID,text,msg_id;
     Long time;
 
     public MessageModel(String uID, String text, Long time) {
@@ -16,6 +16,14 @@ public class MessageModel {
     }
 
     public MessageModel() {
+    }
+
+    public String getMsg_id() {
+        return msg_id;
+    }
+
+    public void setMsg_id(String msg_id) {
+        this.msg_id = msg_id;
     }
 
     public String getuID() {

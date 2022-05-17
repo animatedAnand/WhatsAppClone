@@ -1,6 +1,8 @@
 package com.example.whatsappclone.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.whatsappclone.R;
 import com.example.whatsappclone.models.MessageModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class ChatAdapter extends RecyclerView.Adapter {
     ArrayList<MessageModel> messageModels;
     Context context;
+    String recId;
+
+    public ChatAdapter(ArrayList<MessageModel> messageModels, Context context, String recId) {
+        this.messageModels = messageModels;
+        this.context = context;
+        this.recId = recId;
+    }
 
     public ChatAdapter(ArrayList<MessageModel> messageModels, Context context) {
         this.messageModels = messageModels;
@@ -49,6 +59,30 @@ public class ChatAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MessageModel cur_msg=messageModels.get(position);
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new AlertDialog.Builder(context).setTitle("Delete")
+                        .setMessage("Are you sure to delete")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                                String sender_room=FirebaseAuth.getInstance().getUid()+recId;
+                                database.getReference().child("Chats").child(sender_room)
+                                        .child(cur_msg.getMsg_id()).setValue(null);
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                       dialogInterface.dismiss();
+                    }
+                }).show();
+
+                return false;
+            }
+        });
+
         if(holder.getClass()==SenderViewHolder.class)
         {
             ((SenderViewHolder) holder).tv_outgoing_msg.setText(cur_msg.getText());
@@ -68,8 +102,8 @@ public class ChatAdapter extends RecyclerView.Adapter {
         TextView tv_incoming_msg,tv_incoming_msg_time;
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_incoming_msg=itemView.findViewById(R.id.tv_outgoing_msg);
-            tv_incoming_msg_time=itemView.findViewById(R.id.tv_outgoing_msg_time);
+            tv_incoming_msg=itemView.findViewById(R.id.tv_incoming_msg);
+            tv_incoming_msg_time=itemView.findViewById(R.id.tv_incoming_msg_time);
         }
     }
 
@@ -78,8 +112,8 @@ public class ChatAdapter extends RecyclerView.Adapter {
         TextView tv_outgoing_msg,tv_outgoing_msg_time;
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_outgoing_msg=itemView.findViewById(R.id.tv_outgoing_msg);
-            tv_outgoing_msg_time=itemView.findViewById(R.id.tv_outgoing_msg_time);
+            tv_outgoing_msg=itemView.findViewById(R.id.tv_incoming_msg);
+            tv_outgoing_msg_time=itemView.findViewById(R.id.tv_incoming_msg_time);
         }
     }
 }

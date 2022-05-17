@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="100dp"
@@ -62,10 +63,13 @@
                 android:padding="6dp"
                 android:layout_marginHorizontal="6dp"/>
             <EditText
+                android:id="@+id/et_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter the name"
-                android:textColor="@color/white"
+                android:backgroundTint="@color/gray_background"
+                android:background="@drawable/btn_bg"
+                android:textColor="@color/black"
                 android:padding="6dp"/>
 
         </LinearLayout>
@@ -89,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter bio"
-                android:textColor="@color/white"
+                android:background="@drawable/btn_bg"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/gray_background"
                 android:padding="6dp"/>
 
         </LinearLayout>

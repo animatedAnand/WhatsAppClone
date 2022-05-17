@@ -52,7 +52,7 @@ public class PersonalChatActivity extends AppCompatActivity {
         });
 
         final ArrayList<MessageModel> messageModels=new ArrayList<>();
-        final ChatAdapter chatAdapter=new ChatAdapter(messageModels,this);
+        final ChatAdapter chatAdapter=new ChatAdapter(messageModels,this,receiver_id);
         binder.rvChat.setAdapter(chatAdapter);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         binder.rvChat.setLayoutManager(layoutManager);
@@ -67,6 +67,7 @@ public class PersonalChatActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot1:snapshot.getChildren())
                 {
                     MessageModel model=snapshot1.getValue(MessageModel.class);
+                    model.setMsg_id(snapshot1.getKey());
                     messageModels.add(model);
                 }
                 chatAdapter.notifyDataSetChanged();
@@ -82,6 +83,11 @@ public class PersonalChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String cur_msg=binder.etMsg.getText().toString();
+                if(cur_msg.isEmpty())
+                {
+                    binder.etMsg.setError("Empty");
+                    return;
+                }
                 MessageModel model=new MessageModel(sender_id,cur_msg);
                 model.setTime(new Date().getTime());
                 binder.etMsg.setText("");

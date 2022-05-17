@@ -23,6 +23,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class SettingsActivity extends AppCompatActivity {
     ActivitySettingsBinding binder;
     FirebaseDatabase database;
@@ -57,6 +59,20 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        binder.btSaveSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user_name=binder.etUserName.getText().toString();
+                String user_bio=binder.etBio.getText().toString();
+                HashMap<String,Object> hashMap=new HashMap<>();
+                hashMap.put("name",user_name);
+                hashMap.put("bio",user_bio);
+                database.getReference().child("Users").child(auth.getUid())
+                        .updateChildren(hashMap);
+                Toast.makeText(SettingsActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         database.getReference().child("Users").child(auth.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -64,6 +80,8 @@ public class SettingsActivity extends AppCompatActivity {
                 User cur_user=snapshot.getValue(User.class);
                 Picasso.get().load(cur_user.getProfile_picture())
                         .placeholder(R.drawable.ic_profile).into(binder.civProfileSettings);
+                binder.etUserName.setText(cur_user.getName());
+                binder.etBio.setText(cur_user.getBio());
             }
 
             @Override

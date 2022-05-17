@@ -1,7 +1,22 @@
 package com.example.whatsappclone.models;
 
 public class User {
-    String profile_picture,name,email,password,userid,last_msg;
+    String profile_picture;
+    String name;
+    String email;
+    String password;
+    String userid;
+    String last_msg;
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    String bio;
 
     public User() {
     }

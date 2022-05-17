@@ -47,6 +47,16 @@ public class SignInActivity extends AppCompatActivity {
         binder.btSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binder.etSignInEmail.getText().toString().isEmpty())
+                {
+                    binder.etSignInEmail.setError("Empty");
+                    return;
+                }
+                if(binder.etSignInPassword.getText().toString().isEmpty())
+                {
+                    binder.etSignInPassword.setError("Empty");
+                    return;
+                }
                 pd.show();
                 auth.signInWithEmailAndPassword(binder.etSignInEmail.getText().toString()
                 ,binder.etSignInPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

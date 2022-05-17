@@ -22,8 +22,8 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1638888888888889" />
         <entry key="app/src/main/res/layout/bot_msg.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/incoming_chat_item_layout.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/outgoing_chat_item_layout.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/incoming_chat_item_layout.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/outgoing_chat_item_layout.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/receiver_chat_item_layout.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/user_layout_item.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/user_msg.xml" value="0.19375" />

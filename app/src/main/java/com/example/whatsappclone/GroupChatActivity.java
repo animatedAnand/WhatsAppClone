@@ -51,6 +51,11 @@ public class GroupChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String cur_msg=binder.etMsg.getText().toString();
+                if(cur_msg.isEmpty())
+                {
+                    binder.etMsg.setError("Empty");
+                    return;
+                }
                 String sender_id=auth.getUid();
                 final MessageModel model=new MessageModel(sender_id,cur_msg);
                 model.setTime(new Date().getTime());
